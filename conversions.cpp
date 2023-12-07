@@ -12,3 +12,15 @@ Vector3D::operator NAMESPACE::VECTOR()
 	vector.Z = z_;
 	return vector;
 }
+
+Vector3D::Vector3D(NAMESPACE::VECTOR& v)
+{
+	x_ = v.X;
+	y_ = v.Y;
+	z_ = v.Z;
+}
+
+Vector3D Vector3D::operator=(NAMESPACE::VECTOR& v)
+{
+	return Vector3D(v.X, v.Y, v.Z);
+}

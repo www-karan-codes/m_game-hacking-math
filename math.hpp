@@ -29,5 +29,7 @@ namespace gamehacking::math
         }
 
         operator NAMESPACE::VECTOR();
+        Vector3D(NAMESPACE::VECTOR&);
+        Vector3D operator=(NAMESPACE::VECTOR&);
     };
 }
