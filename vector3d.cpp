@@ -26,7 +26,7 @@ Vector3D Vector3D::operator/(const double& div) const
     return Vector3D(x_/div, y_/div, z_/div);
 }
 
-Vector3D Vector3D::operator/(const double& mul) const
+Vector3D Vector3D::operator*(const double& mul) const
 {
     return *this/(1/mul);
 }
@@ -96,9 +96,4 @@ bool Vector3D::IsInFieldOfView(const Vector3D& v) const
     if (dot_product <= 0)      // dot is > 0 if vectors face same direction, 0 if vectors perpendicular, negative if facing oppposite directions
         return false;  // we want to ensure the vectors face in the same direction
     return true;
-}
-
-std::ostream& operator<< (std::ostream &out, const Vector3D& v)
-{
-    return out << "x = " << v.x_ << ", y = " << v.y_ << ", z = " << v.z_;
 }

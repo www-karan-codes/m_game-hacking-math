@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
 
+#include "forward_declaration.hpp"
+
 namespace gamehacking::math
 {
     struct Vector3D
@@ -21,6 +23,11 @@ namespace gamehacking::math
         double AngleBetweenXY(Vector3D) const;
         bool IsInFieldOfView(const Vector3D&) const;
         Side Orientation(const Vector3D&) const;
-        friend std::ostream& operator<< (std::ostream &out, const Vector3D&);
+        inline friend std::ostream& operator<< (std::ostream& out, const Vector3D& v)
+        {
+            return out << "x = " << v.x_ << ", y = " << v.y_ << ", z = " << v.z_ << std::endl;
+        }
+
+        operator NAMESPACE::VECTOR();
     };
 }
