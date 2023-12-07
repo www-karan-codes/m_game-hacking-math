@@ -1,3 +1,5 @@
+#pragma once
+
 #define NAMESPACE SDK
 #define VECTOR FVector
 #define ROTATOR FRotator
