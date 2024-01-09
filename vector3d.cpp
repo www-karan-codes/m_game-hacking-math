@@ -1,4 +1,5 @@
 #include "math.hpp"
+#include <algorithm>
 
 using gamehacking::math::Vector3D;
 
@@ -48,13 +49,14 @@ double Vector3D::DotProduct(const Vector3D& v) const
 
 Vector3D Vector3D::CrossProduct(const Vector3D& v) const
 {
-    return Vector3D(y_ * v.z_ - z_ * v.y_, z_ * v.x_ - x_ * v.z_, x_ * v.y_ - y_ * v.x_);
+    return Vector3D((y_ * v.z_) - (z_ * v.y_), (z_ * v.x_) - (x_ * v.z_), (x_ * v.y_) - (y_ * v.x_));
 }
 
 Vector3D::Side Vector3D::Orientation(const Vector3D& v) const
 {
+    auto u = *this;
     static auto up = Vector3D(0,0,1);
-    Vector3D right = this->CrossProduct(up);
+    Vector3D right = u.CrossProduct(up);
 
     auto dot_product = right.DotProduct(v);
 
@@ -82,13 +84,14 @@ double Vector3D::AngleBetweenXY(Vector3D v) const
     auto dot = u.DotProduct(v);
     auto denom = u.Magnitude() * v.Magnitude();
     auto div = dot / denom;
+    div = std::clamp(div, -1.0, 1.0);
     return acos(div);
 }
 
-bool Vector3D::IsInFieldOfView(const Vector3D& v) const
+bool Vector3D::IsInFieldOfView(const Vector3D& location, const Vector3D& direction, const Vector3D& location_to_check)
 {
-    auto rotation_vector = *this;
-    auto difference_vector = v;
+    auto rotation_vector = direction;
+    auto difference_vector = location_to_check - location;
     rotation_vector.z_ = 0;
     difference_vector.z_ = 0;
 

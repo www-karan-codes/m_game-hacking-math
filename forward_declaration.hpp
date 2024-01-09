@@ -1,9 +1,15 @@
+#pragma once
+
 #define NAMESPACE SDK
-#define VECTOR FVector
-#define ROTATOR FRotator
+#define VECTOR FStruct_Vector
+#define VECTOR2D FVector2D
+#define ROTATOR FStruct_Rotator
 
 namespace NAMESPACE
 {
 	struct VECTOR;
+	struct VECTOR2D;
 	struct ROTATOR;
 }
+
+struct ImVec2;
