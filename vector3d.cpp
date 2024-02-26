@@ -16,10 +16,23 @@ double Vector3D::Magnitude(void) const
     return sqrt(x_*x_ + y_*y_ + z_*z_);
 }
 
+double Vector3D::MagnitudeXY(void) const
+{
+    return sqrt(x_ * x_ + y_ * y_);
+}
+
 Vector3D Vector3D::Unit(void)
 {
     auto magnitude = this->Magnitude();
     return *this / magnitude;
+}
+
+Vector3D Vector3D::UnitXY(void)
+{
+    auto magnitude = this->Magnitude();
+    auto v = *this / magnitude;
+    v.z_ = 0;
+    return v;
 }
 
 Vector3D Vector3D::operator/(const double& div) const
@@ -30,6 +43,11 @@ Vector3D Vector3D::operator/(const double& div) const
 Vector3D Vector3D::operator*(const double& mul) const
 {
     return *this/(1/mul);
+}
+
+Vector3D Vector3D::operator*(const Vector3D& v) const
+{
+    return Vector3D(x_ * v.x_, y_ * v.y_, z_ * v.z_);
 }
 
 Vector3D Vector3D::operator+(const Vector3D& v) const

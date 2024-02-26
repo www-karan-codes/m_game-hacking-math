@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 #include "forward_declaration.hpp"
 //#include "declarations.hpp"
@@ -27,10 +28,13 @@ namespace gamehacking::math
         Vector3D(const double x, double y, double z);
         double x_, y_, z_;
         double Magnitude(void) const;
+        double MagnitudeXY(void) const;
         Vector3D Unit(void);
+        Vector3D UnitXY(void);
         Vector3D Normal(void);
         Vector3D operator/(const double&) const;
         Vector3D operator*(const double&) const;
+        Vector3D operator*(const Vector3D&) const;
         Vector3D operator+(const Vector3D&) const;
         Vector3D operator-(const Vector3D&) const;
         double DotProduct(const Vector3D&) const;
@@ -56,6 +60,12 @@ namespace gamehacking::math
 
         Rotation ToRotator(void);
     };
+
+    bool DoesPointLieInLineSegment(Vector3D p1, Vector3D p2, Vector3D p);
+
+    Vector3D GetClosestPointInLineFromPoint(Vector3D p1, Vector3D p2, Vector3D p);
+
+    std::vector<Vector3D> GetIntersectionPointsBetweenLineAndCircle(Vector3D p1, Vector3D p2, Vector3D p, double r, bool segment);
 
     struct Rotation
     {
