@@ -29,9 +29,11 @@ Vector3D Vector3D::Unit(void)
 
 Vector3D Vector3D::UnitXY(void)
 {
-    auto magnitude = this->Magnitude();
-    auto v = *this / magnitude;
-    v.z_ = 0;
+    auto v0 = *this;
+    v0.z_ = 0;
+    auto magnitude = v0.MagnitudeXY();
+    auto v = v0 / magnitude;
+    
     return v;
 }
 
